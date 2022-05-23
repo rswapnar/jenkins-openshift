@@ -49,9 +49,7 @@ pipeline {
                               openshift.newApp('testjenkinsdeploy', "--as-deployment-config").narrow('svc').expose() 
                             } 
 
-                            timeout(5) { 
-                              openshift.selector("dc", "testjenkinsdeploy").related('pods').untilEach(1) { 
-                                return (it.object().status.phase == "Running") 
+                          
       } 
     } 
   } 
