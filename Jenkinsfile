@@ -46,11 +46,11 @@ pipeline {
                              def deployment = openshift.selector("dc", "jenkinsdeploy") 
 
                             if(!deployment.exists()){ 
-                              openshift.newApp('jenkinsdeploy', "--as-deployment-config").narrow('svc').expose() 
+                              openshift.newApp('testjenkinsdeploy', "--as-deployment-config").narrow('svc').expose() 
                             } 
 
                             timeout(5) { 
-                              openshift.selector("dc", "jenkinsdeploy").related('pods').untilEach(1) { 
+                              openshift.selector("dc", "testjenkinsdeploy").related('pods').untilEach(1) { 
                                 return (it.object().status.phase == "Running") 
       } 
     } 
