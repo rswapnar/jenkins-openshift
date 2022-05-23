@@ -1,4 +1,4 @@
-#! /usr/bin/env groovy
+! /usr/bin/env groovy
 
 pipeline {
 
@@ -43,15 +43,13 @@ pipeline {
           
           openshift.withCluster() { 
               openshift.withProject("swapnaramesh-dev") { 
-                             def deployment = openshift.selector("dc", "jenkinsdeploy") 
+                             def deployment = openshift.selector("dc", "testjenkinsdeploy") 
 
                             if(!deployment.exists()){ 
                               openshift.newApp('testjenkinsdeploy', "--as-deployment-config").narrow('svc').expose() 
                             } 
 
-                          
-      
-    } 
+                            
   } 
 }
 
